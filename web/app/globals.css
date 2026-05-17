@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #050508;
+  --cyan: #00f5ff;
+  --magenta: #ff2bd6;
+  --lime: #b8ff00;
+}
+
+@theme inline {
+  --font-display: var(--font-orbitron);
+  --font-mono: var(--font-plex-mono);
+}
+
+body {
+  background: var(--bg);
+  color: #e8e8f0;
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Portrait game grid 12×14 — fill phone width, grow in flex shell */
+.game-shell {
+  --game-cols: 12;
+  --game-rows: 14;
+}
+
+.game-stage {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.font-display {
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+}
+
+.scanlines::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.12) 2px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
+}
+
+.neon-hud {
+  border: 1px solid rgba(0, 245, 255, 0.35);
+  background: rgba(10, 10, 18, 0.85);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.12);
+  animation: hud-pulse 3s ease-in-out infinite;
+}
+
+@keyframes hud-pulse {
+  0%,
+  100% {
+    border-color: rgba(0, 245, 255, 0.35);
+  }
+  50% {
+    border-color: rgba(255, 43, 214, 0.45);
+  }
+}
+
+.neon-card {
+  border: 1px solid rgba(255, 43, 214, 0.35);
+  background: linear-gradient(135deg, rgba(18, 0, 31, 0.9), rgba(5, 5, 8, 0.95));
+  box-shadow: 0 0 24px rgba(255, 43, 214, 0.1);
+}
+
+.neon-btn {
+  border: 1px solid var(--cyan);
+  background: rgba(0, 245, 255, 0.12);
+  padding: 0.65rem 1.5rem;
+  font-family: var(--font-orbitron), sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.neon-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 28px rgba(255, 43, 214, 0.45);
+}
