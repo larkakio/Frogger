@@ -16,12 +16,13 @@ const plexMono = IBM_Plex_Mono({
 });
 
 const baseAppId =
-  process.env.NEXT_PUBLIC_BASE_APP_ID ?? "neon-frogger-placeholder";
+  process.env.NEXT_PUBLIC_BASE_APP_ID ?? "6a09a949be037e1a864d98ac";
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://frogger-ochre.vercel.app";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
+  metadataBase: new URL(siteUrl),
   title: "Neon Frogger",
   description:
     "Cyberpunk Frogger on the Gridrunner Overpass — swipe to survive, check in on Base.",
