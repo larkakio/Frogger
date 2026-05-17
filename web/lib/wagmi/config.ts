@@ -1,19 +1,9 @@
-import { Attribution } from "ox/erc8021";
+import { getBuilderDataSuffix } from "@/lib/builder/attribution";
 import { cookieStorage, createConfig, createStorage, http } from "wagmi";
 import { base, mainnet } from "wagmi/chains";
 import { baseAccount, injected, walletConnect } from "wagmi/connectors";
 
-const builderCode = process.env.NEXT_PUBLIC_BUILDER_CODE;
-const suffixOverride = process.env.NEXT_PUBLIC_BUILDER_CODE_SUFFIX as
-  | `0x${string}`
-  | undefined;
-
-let dataSuffix: `0x${string}` | undefined;
-if (builderCode) {
-  dataSuffix = Attribution.toDataSuffix({ codes: [builderCode] });
-} else if (suffixOverride) {
-  dataSuffix = suffixOverride;
-}
+const dataSuffix = getBuilderDataSuffix();
 
 const wcProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
 
@@ -46,6 +36,4 @@ declare module "wagmi" {
   }
 }
 
-export function getCheckInDataSuffix(): `0x${string}` | undefined {
-  return dataSuffix;
-}
+export { getBuilderDataSuffix as getCheckInDataSuffix };
